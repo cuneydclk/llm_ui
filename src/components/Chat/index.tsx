@@ -1,4 +1,4 @@
-// components/Chat/index.tsx
+// components/Chat/index.jsx
 
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -22,7 +22,7 @@ import { Input } from "@/components/Input";
 import { Instructions } from "../Layout/Instructions";
 import { useChat } from "@/store/chat";
 import { useAPI } from "@/store/api";
-import { HotelInfo } from "@/components/HotelInfo";
+import HotelInfo from "@/components/HotelInfo"; // Adjusted import
 
 export const Chat = ({ ...props }) => {
     const { api } = useAPI();
@@ -55,12 +55,11 @@ export const Chat = ({ ...props }) => {
         mutationFn: async (prompt) => {
             const response = await axios.post("http://127.0.0.1:5000/chat", 
                 { message: prompt },
-                { withCredentials: true } // Include this line
+                { withCredentials: true }
             );
             return response.data;
         }
     });
-    
 
     const handleAsk = async ({ input: prompt }) => {
         updateScroll();

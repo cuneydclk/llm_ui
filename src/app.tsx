@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //Components
 import Home from '@/pages/Home';
 import AuthPage from './pages/AuthPage';
+import PaymentPage from './pages/PaymentPage';
 import { Providers } from './components/Providers';
 
 //Style
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<AuthPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
         </Routes>
       </Router>
     </Providers>

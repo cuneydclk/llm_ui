@@ -5,7 +5,8 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { CSSProperties, useEffect, useState } from "react";
 import store from "store2";
 import { motion } from "framer-motion";
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 //Components
 import {
     Badge,
@@ -56,6 +57,31 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
         removeChat,
         clearAll
     } = useChat();
+
+    const navigate = useNavigate(); // Initialize navigate hook
+
+    const logout = async () => {
+        try {
+            // Send the logout request with the headers
+            await axios.post(
+                'http://127.0.0.1:5000/logout',
+                {}, // empty data object since you're not sending any data
+                { withCredentials: true } // include withCredentials in the request config
+            );
+            
+            // Clear any local storage or session data related to authentication
+            localStorage.removeItem('sessionToken'); // Remove the session token
+            // You may want to clear chat-related data here as well
+            // Example: store.remove("@chat");
+            
+            // Redirect to the login page or any other desired location
+            navigate('/'); // Redirect to login page
+        } catch (error) {
+            console.error('Logout failed:', error);
+        }
+    };
+    
+    
 
     const {
         Modal: AccountModal,
@@ -254,14 +280,15 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
                         }}
                     >Updates & FAQ</Button>
                     <Button
-                        leftIcon={<FiLogOut />}
-                        justifyContent="flex-start"
-                        padding={2}
-                        backgroundColor="transparent"
-                        _hover={{
-                            backgroundColor: "blackAlpha.300"
-                        }}
-                    >Log Out</Button>
+                    leftIcon={<FiLogOut />}
+                    justifyContent="flex-start"
+                    padding={2}
+                    backgroundColor="transparent"
+                    onClick={logout} // Call logout function on button click
+                    _hover={{
+                        backgroundColor: "blackAlpha.300"
+                    }}
+                >Log Out</Button>
                     <Button
                         leftIcon={<FiKey />}
                         padding={2}
@@ -269,7 +296,7 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
                         backgroundColor="transparent"
                         onClick={handleOpenAPIKeyModal}
                         _hover={{
-                            backgroundColor: "blackAlpha.300"
+                            backgroundColor: "blackAlpha.100"
                         }}
                     >Change API Key</Button>
                 </Stack>
