@@ -1,24 +1,104 @@
+/* Applies a universal box-sizing rule */
+* {
+  box-sizing: border-box;
+
+}
+
+/* Customizes the scrollbar */
+::-webkit-scrollbar {
+  width: 0px;  /* Scrollbar thickness */
+  height: 0px; /* Scrollbar height */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(26,32,44,255);  /* Scrollbar handle color */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26,32,44,255); /* Scrollbar handle hover color */
+}
+
+/* Ensures the html, body, and #root div take up full viewport height */
+html, body, #root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+/* Styling for anchor tags */
+a {
+  color: #6868ff !important; /* Sets link color, overrides other styles with !important */
+}
+
+/* Styles for the main container */
+
+
+/* Styling for the form container */
+.formDiv {
+  width: 400px; /* Width of the form */
+  padding: 30px; /* Padding around the form */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: -1px 8px 15px 0px rgba(0, 0, 0, 0.44); /* Adds shadow for 3D effect */
+  margin-left: 200px; /* Margin from the left */
+}
+
+
+/* Margin under the credit card visualization */
+.creditCard {
+  margin-bottom: 10%;
+
+}
+
+
+
+
+.hotel-info {
+  width: 400px; /* Otel bilgi kutusunun genişliği */
+  padding: 30px; /* İç boşluk */
+  border-radius: 10px; /* Köşelerin yuvarlaklaştırılması */
+  background-color: rgba(26,32,44,255);
+  box-shadow: -1px 8px 15px 0px rgba(0, 0, 0, 0.44); /* Gölge efekti */
+  justify-content: center;
+}
+
+
+.price {
+  font-size: 20px; /* Fiyat bilgisinin font boyutu */
+  color: #ffffffd9; /* Fiyat bilgisinin rengi */
+  font-weight: bold; /* Fiyat bilgisinin kalın yazılması */
+  margin-top: 10px; /* Üstteki elemanla arasındaki boşluk */
+}
+
+/* Resim için stil */
+.hotel-info img {
+  width: 100%; /* Resmin genişliği konteyneri kaplasın */
+  border-radius: 8px; /* Resmin köşelerini yuvarlak yap */
+  margin-bottom: 15px; /* Altındaki elemanlarla arasında boşluk */
+}
+
+/* Otel adı için stil */
+.hotel-info h2 {
+  margin-top: 0; /* Üstte boşluk olmasın */
+  color: #2a2a72; /* Yazı rengi */
+  font-weight: bold; /* Yazı tipi kalın */
+}
+
 .container {
-    margin-top: 10%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .formDiv {
-    width: 400px;
-    padding: 30px;
-    border-radius: 10px;
-    -webkit-box-shadow: -1px 8px 15px 0px rgba(0, 0, 0, 0.44);
-    -moz-box-shadow: -1px 8px 15px 0px rgba(0, 0, 0, 0.44);
-    box-shadow: -1px 8px 15px 0px rgba(0, 0, 0, 0.44);
-  }
-  
-  .alert {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .creditCard{
-      margin-bottom: 10%;
-  }
+  margin-top: 5%;
+  width: 80%;
+  display: flex;
+  justify-content: flex-start; /* İçerikleri sola yaslar */
+  display: flex;
+  margin-left: 13%;
+}
+
+
+
+
+.info-and-card{
+  justify-content: space-between;
+  display: flex;
+  height: 70%;
+}
+

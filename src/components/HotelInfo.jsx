@@ -1,11 +1,11 @@
-// components/HotelInfo.jsx
-
 import React, { useEffect, useState } from "react";
-import { Stack, Box, Text, Image, Link } from "@chakra-ui/react";
+import { Stack, Box, Text, Image, Link, Button } from "@chakra-ui/react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const HotelInfo = ({ hotels }) => {
     const [hotelMetadata, setHotelMetadata] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMetadata = async (hotelId) => {
@@ -44,6 +44,13 @@ const HotelInfo = ({ hotels }) => {
                             {metadata && (
                                 <Link href={metadata.website_url} color="teal.500" isExternal>Visit Website</Link>
                             )}
+                            <Button
+                                mt={4}
+                                colorScheme="teal"
+                                onClick={() => navigate(`/payment`, { state: { hotelId: hotel[0] } })}
+                            >
+                                Proceed to Payment
+                            </Button>
                         </Stack>
                     </Box>
                 );
