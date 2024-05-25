@@ -693,7 +693,7 @@
     "@chakra-ui/react-context" "2.0.7"
     "@chakra-ui/shared-utils" "2.0.5"
 
-"@chakra-ui/styled-system@>=2.0.0", "@chakra-ui/styled-system@2.6.1":
+"@chakra-ui/styled-system@2.6.1":
   version "2.6.1"
   resolved "https://registry.npmjs.org/@chakra-ui/styled-system/-/styled-system-2.6.1.tgz"
   integrity sha512-jy/1dVi1LxjoRCm+Eo5mqBgvPy5SCWMlIcz6GbIZBDpkGeKZwtqrZLjekxxLBCy8ORY+kJlUB0FT6AzVR/1tjw==
@@ -710,7 +710,7 @@
     "@chakra-ui/checkbox" "2.2.10"
     "@chakra-ui/shared-utils" "2.0.5"
 
-"@chakra-ui/system@>=2.0.0", "@chakra-ui/system@2.5.1":
+"@chakra-ui/system@2.5.1":
   version "2.5.1"
   resolved "https://registry.npmjs.org/@chakra-ui/system/-/system-2.5.1.tgz"
   integrity sha512-4+86OrcSoq7lGkm5fh+sJ3IWXSTzjz+HOllRbCW2Rtnmcg7ritiXVNV2VygEg2DrCcx5+tNqRHDM764zW+AEug==
@@ -897,7 +897,7 @@
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.4.tgz"
   integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
 
-"@emotion/react@^11.0.0", "@emotion/react@^11.0.0-rc.0", "@emotion/react@^11.10.6", "@emotion/react@>=10.0.35":
+"@emotion/react@^11.10.6":
   version "11.10.6"
   resolved "https://registry.npmjs.org/@emotion/react/-/react-11.10.6.tgz"
   integrity sha512-6HT8jBmcSkfzO7mc+N1L9uwvOnlcGoix8Zn7srt+9ga0MjREo6lRpuVX0kzo6Jp6oTqDhREOFsygN6Ew4fEQbw==
@@ -927,7 +927,7 @@
   resolved "https://registry.npmjs.org/@emotion/sheet/-/sheet-1.2.1.tgz"
   integrity sha512-zxRBwl93sHMsOj4zs+OslQKg/uhF38MB+OMKoCrVuS0nyTkqnau+BM3WGEoOptg9Oz45T/aIGs1qbVAsEFo3nA==
 
-"@emotion/styled@^11.0.0", "@emotion/styled@^11.10.6":
+"@emotion/styled@^11.10.6":
   version "11.10.6"
   resolved "https://registry.npmjs.org/@emotion/styled/-/styled-11.10.6.tgz"
   integrity sha512-OXtBzOmDSJo5Q0AFemHCfl+bUueT8BIcPSxu0EGTpGk6DmI5dnhSzQANm1e1ze0YZL7TDyAyy6s/b/zmGOS3Og==
@@ -969,7 +969,11 @@
   resolved "https://registry.npmjs.org/@formkit/auto-animate/-/auto-animate-1.0.0-beta.6.tgz"
   integrity sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==
 
+<<<<<<< Updated upstream
 "@popperjs/core@^2.11.6", "@popperjs/core@^2.11.8", "@popperjs/core@^2.9.3":
+=======
+"@popperjs/core@^2.11.6", "@popperjs/core@^2.9.3":
+>>>>>>> Stashed changes
   version "2.11.8"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
@@ -1008,7 +1012,11 @@
     uncontrollable "^8.0.1"
     warning "^4.0.3"
 
+<<<<<<< Updated upstream
 "@swc/core-win32-x64-msvc@1.3.40":
+=======
+"@swc/core-linux-x64-gnu@1.3.40":
+>>>>>>> Stashed changes
   version "1.3.40"
   resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.3.40.tgz"
   integrity sha512-73DGsjsJYSzmoRbfomPj5jcQawtK2H0bCDi/1wgfl8NKVOuzrq+PpaTry3lzx+gvTHxUX6mUHV22i7C9ITL74Q==
@@ -1098,7 +1106,11 @@
   dependencies:
     "@types/react" "*"
 
+<<<<<<< Updated upstream
 "@types/react@*", "@types/react@^16.8.0 || ^17.0.0 || ^18.0.0", "@types/react@^16.9.0 || ^17.0.0 || ^18.0.0", "@types/react@^18.0.27", "@types/react@>=16", "@types/react@>=16.14.8", "@types/react@>=16.9.11":
+=======
+"@types/react@*", "@types/react@^18.0.27", "@types/react@>=16.9.11":
+>>>>>>> Stashed changes
   version "18.0.28"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.0.28.tgz"
   integrity sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==
@@ -1484,7 +1496,7 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
-framer-motion@^10.3.2, framer-motion@>=4.0.0:
+framer-motion@^10.3.2:
   version "10.3.2"
   resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-10.3.2.tgz"
   integrity sha512-8GrK3X2vXG/9LJCNJuU5gKxDwSN0VTf7tD6MFP3S9F7rgsUavx+8ZNwhfZfak6maCBBHZ1m86K7TIXpbdfML2w==
@@ -1697,6 +1709,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+luhn@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.npmjs.org/luhn/-/luhn-2.4.1.tgz"
+  integrity sha512-p1eEWSb2RJAfv+BzrPEUqbUXV1H3ylHEAOk9yDM1L12ojD6OQQGrE29DqKLa0XYluJTIwXIOFmyzVOme3QSyww==
 
 match-sorter@^6.0.2:
   version "6.3.1"
@@ -2057,7 +2074,11 @@ path-type@^4.0.0:
   resolved "https://registry.npmjs.org/path-type/-/path-type-4.0.0.tgz"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+<<<<<<< Updated upstream
 payment@^2.3.0:
+=======
+payment@^2.1.0, payment@^2.3.0:
+>>>>>>> Stashed changes
   version "2.4.6"
   resolved "https://registry.npmjs.org/payment/-/payment-2.4.6.tgz"
   integrity sha512-QSCAa1yQSkqbe4Ghac3sSA5SQ+Cxc3e4xwCxxun5NT6hUSWsNXXlN8KCCY0kAFFXBP9C7DrfyXP4REB7nPJa8g==
@@ -2087,7 +2108,11 @@ prop-types-extra@^1.1.0:
     react-is "^16.3.2"
     warning "^4.0.0"
 
+<<<<<<< Updated upstream
 prop-types@^15.0.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+=======
+prop-types@^15.0.0, prop-types@^15.6.2, prop-types@^15.8.1:
+>>>>>>> Stashed changes
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2131,6 +2156,25 @@ react-clientside-effect@^1.2.6:
   dependencies:
     "@babel/runtime" "^7.12.13"
 
+<<<<<<< Updated upstream
+=======
+react-credit-card@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/react-credit-card/-/react-credit-card-0.20.0.tgz"
+  integrity sha512-mYVJ1aDkW2XvlxSEQb/g+5Rv8TrCcAspqgarrYmS2/2Yqfmr33hjL1kLCNCwGNj4X7KnZlZoTIOlsddzFhUKvA==
+  dependencies:
+    payment "^2.1.0"
+
+react-credit-cards-2@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/react-credit-cards-2/-/react-credit-cards-2-1.0.2.tgz"
+  integrity sha512-XvDa7x+rzdtrHIglARMhiQpuWIqMP1bSN8gajBGD93Zn4Y3DdhPKEPKafChTAOAfhMRZpFZ23DUXNQWJAIUDFA==
+  dependencies:
+    credit-card-type "^9.1.0"
+    luhn "^2.4.1"
+    payment "^2.3.0"
+
+>>>>>>> Stashed changes
 react-credit-cards@^0.8.3:
   version "0.8.3"
   resolved "https://registry.npmjs.org/react-credit-cards/-/react-credit-cards-0.8.3.tgz"
@@ -2138,7 +2182,11 @@ react-credit-cards@^0.8.3:
   dependencies:
     payment "^2.3.0"
 
+<<<<<<< Updated upstream
 react-dom@^18.0.0, react-dom@^18.2.0, react-dom@>=16.14.0, react-dom@>=16.6.0, react-dom@>=16.8, react-dom@>=18:
+=======
+react-dom@^18.2.0:
+>>>>>>> Stashed changes
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -2271,7 +2319,11 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+<<<<<<< Updated upstream
 react@*, "react@^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", react@^18.0.0, react@^18.2.0, react@>=0.14.0, react@>=15.0.0, react@>=16, react@>=16.14.0, react@>=16.6.0, react@>=16.8, react@>=16.8.0, react@>=18:
+=======
+react@^18.2.0:
+>>>>>>> Stashed changes
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -2433,7 +2485,7 @@ tslib@2.4.0:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
-"typescript@^4.3.5 || ^5.0.0", typescript@^4.9.3:
+typescript@^4.9.3:
   version "4.9.5"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
@@ -2587,7 +2639,7 @@ vite-tsconfig-paths@^4.0.7:
     globrex "^0.1.2"
     tsconfck "^2.0.1"
 
-vite@*, vite@^4, vite@^4.1.0:
+vite@^4.1.0:
   version "4.1.4"
   resolved "https://registry.npmjs.org/vite/-/vite-4.1.4.tgz"
   integrity sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==

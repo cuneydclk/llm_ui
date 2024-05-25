@@ -1,5 +1,3 @@
-// components/Chat/index.jsx
-
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -22,7 +20,7 @@ import { Input } from "@/components/Input";
 import { Instructions } from "../Layout/Instructions";
 import { useChat } from "@/store/chat";
 import { useAPI } from "@/store/api";
-import HotelInfo from "@/components/HotelInfo"; // Adjusted import
+import HotelInfo from "@/components/HotelInfo";
 
 export const Chat = ({ ...props }) => {
     const { api } = useAPI();
@@ -53,11 +51,18 @@ export const Chat = ({ ...props }) => {
     const { mutate, isLoading } = useMutation({
         mutationKey: "prompt",
         mutationFn: async (prompt) => {
-            const response = await axios.post("http://127.0.0.1:5000/chat", 
+            const initialResponse = await axios.post("http://127.0.0.1:5000/chat", 
                 { message: prompt },
                 { withCredentials: true }
             );
-            return response.data;
+
+            const { redirect_url } = initialResponse.data;
+            const finalResponse = await axios.post(`http://127.0.0.1:5000${redirect_url}`, 
+                { message: prompt },
+                { withCredentials: true }
+            );
+            
+            return finalResponse.data;
         }
     });
 
@@ -86,7 +91,7 @@ export const Chat = ({ ...props }) => {
                     updateScroll();
                 },
                 onError(error) {
-                    const message = error.response.data.error.message;
+                    const message = error.response?.data?.error?.message || "An error occurred";
                     addMessage(selectedId, {
                         emitter: "error",
                         message

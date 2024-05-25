@@ -239,27 +239,7 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
                             backgroundColor: "blackAlpha.300"
                         }}
                     >Clear conversations</Button>
-                    <Button
-                        padding={2}
-                        justifyContent="space-between"
-                        backgroundColor="transparent"
-                        onClick={handleOpenAccountModal}
-                        _hover={{
-                            backgroundColor: "blackAlpha.300"
-                        }}
-                    >
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            gap={2}
-                        ><FiUser /> Upgrade to Plus</Text>
-                        <Badge
-                            backgroundColor="orange.200"
-                            color="black"
-                            paddingX={2}
-                            rounded={4}
-                        >New</Badge>
-                    </Button>
+                    
                     <Button
                         justifyContent="flex-start"
                         padding={2}
@@ -278,7 +258,7 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
                         _hover={{
                             backgroundColor: "blackAlpha.300"
                         }}
-                    >Updates & FAQ</Button>
+                    >My Rezervations</Button>
                     <Button
                     leftIcon={<FiLogOut />}
                     justifyContent="flex-start"
@@ -289,16 +269,7 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
                         backgroundColor: "blackAlpha.300"
                     }}
                 >Log Out</Button>
-                    <Button
-                        leftIcon={<FiKey />}
-                        padding={2}
-                        justifyContent="flex-start"
-                        backgroundColor="transparent"
-                        onClick={handleOpenAPIKeyModal}
-                        _hover={{
-                            backgroundColor: "blackAlpha.100"
-                        }}
-                    >Change API Key</Button>
+                    
                 </Stack>
             </Stack>
             <AccountModal title="Your account">
