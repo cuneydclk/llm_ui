@@ -19,7 +19,10 @@ const AuthPage = () => {
             });
 
             if (response.status === 200) {
-                console.log("Logged in successfully");
+                const { user } = response.data; // Extract user data from response
+                const userId = user.user_id; // Extract userId from user data
+                console.log("Logged in successfully, user:", userId);
+                sessionStorage.setItem('userId', userId); // Store userId in sessionStorage
                 navigate('/home');
             }
         } catch (error) {
