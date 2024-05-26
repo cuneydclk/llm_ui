@@ -7,6 +7,7 @@ import store from "store2";
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import axios
+
 //Components
 import {
     Badge,
@@ -60,6 +61,8 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
 
     const navigate = useNavigate(); // Initialize navigate hook
 
+
+
     const logout = async () => {
         try {
             // Send the logout request with the headers
@@ -73,7 +76,9 @@ export const Sidebar = ({ isResponsive, ...props }: SideBarProps) => {
             localStorage.removeItem('sessionToken'); // Remove the session token
             // You may want to clear chat-related data here as well
             // Example: store.remove("@chat");
-            
+            sessionStorage.removeItem('userId');
+            sessionStorage.removeItem('@chat');
+            await useChat.getState().clearAll();
             // Redirect to the login page or any other desired location
             navigate('/'); // Redirect to login page
         } catch (error) {

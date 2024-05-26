@@ -35,23 +35,22 @@ const fetchUserChats = async (userId: string): Promise<Chat[] | undefined> => {
             throw new Error('Failed to fetch user chats');
         }
         const data = await response.json();
-        return data.chats;
+        return data.chats.map(chat => ({
+            id: chat.session_id,
+            role: chat.subject,
+            content: [{ emitter: 'user', message: chat.subject }]
+        }));
     } catch (error) {
         console.error('Error fetching user chats:', error);
         return undefined;
     }
 };
 
-
 // Initialize initial chat state with fetched user chats or a new chat if no chats are fetched
 const initializeChatState = async (userId: string): Promise<Chat[]> => {
     const userChats = await fetchUserChats(userId);
     if (userChats) {
-        return userChats.map(chat => ({
-            id: chat.session_id,
-            role: chat.subject,
-            content: [{ emitter: 'user', message: chat.subject }]
-        }));
+        return userChats;
     } else {
         // If no chats are fetched, return an empty array with a new chat
         const newChatId = v4();
@@ -62,12 +61,12 @@ const initializeChatState = async (userId: string): Promise<Chat[]> => {
         }];
     }
 };
+
 const savedChats = JSON.parse(store.session("@chat"));
 const getSafeSavedChats = () => {
     if (Array.isArray(savedChats) && savedChats.length > 0) {
         return savedChats;
-    };
-
+    }
     return undefined;
 };
 
@@ -82,24 +81,21 @@ const initialChatState: Chat[] = getSafeSavedChats() || [
             },
             {
                 emitter: "gpt",
-                message: "This website is a assistant for hotel reservation. Powered by OpenAI."
+                message: "This website is an assistant for hotel reservation. Powered by OpenAI."
             }
         ],
-    },
-    {
-        
     }
 ];
 
 export const useChat = create<UseChatProps>((set, get) => ({
-    chat: [],
+    chat: initialChatState,
     selectedChat: undefined,
     setChat: (payload) => set(({ chat }) => ({ chat: [...chat, payload] })),
     addChat: async (callback) => {
         const hasNewChat = get().chat.find(({ content }) => (content.length === 0));
 
         if (!hasNewChat) {
-            const id = v4()
+            const id = v4();
             get().setChat({
                 role: "New chat",
                 id: id,
@@ -111,31 +107,29 @@ export const useChat = create<UseChatProps>((set, get) => ({
             const { id } = hasNewChat;
             get().setSelectedChat({ id });
             if (callback) callback(id);
-        };
+        }
     },
     editChat: async (id, payload) => set(({ chat }) => {
         const selectedChat = chat.findIndex((query) => (query.id === id));
         if (selectedChat > -1) {
             chat[selectedChat] = { ...chat[selectedChat], ...payload };
-            return ({ chat, selectedChat: chat[selectedChat] })
-        };
+            return ({ chat, selectedChat: chat[selectedChat] });
+        }
         return ({});
-
     }),
     addMessage: async (id, action) => set(({ chat }) => {
         const selectedChat = chat.findIndex((query) => (query.id === id)),
             props = chat[selectedChat];
 
         if (selectedChat > -1) {
-            chat[selectedChat] = { ...props, content: [...props['content'], action] }
+            chat[selectedChat] = { ...props, content: [...props['content'], action] };
             return ({ chat, selectedChat: chat[selectedChat] });
-        };
-
+        }
         return ({});
     }),
     setSelectedChat: async (payload) => set(({ chat }) => {
         const selectedChat = chat.find(({ id }) => id === payload.id);
-        return ({ selectedChat: selectedChat })
+        return ({ selectedChat: selectedChat });
     }),
     removeChat: async (payload) => set(({ chat }) => {
         const newChat = chat.filter(({ id }) => id !== payload.id);
@@ -147,5 +141,10 @@ export const useChat = create<UseChatProps>((set, get) => ({
 // Fetch user ID from sessionStorage and initialize chat state
 const userId = sessionStorage.getItem('userId');
 if (userId) {
-    initializeChatState(userId).then(chats => useChat.setState({ chat: chats }));
+    initializeChatState(userId).then(chats => {
+        if (chats) {
+            useChat.setState({ chat: chats });
+        }
+    });
 }
+    
