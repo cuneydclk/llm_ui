@@ -47,7 +47,11 @@ const HotelInfo = ({ hotels }) => {
                             <Button
                                 mt={4}
                                 colorScheme="teal"
-                                onClick={() => navigate(`/payment`, { state: { hotelId: hotel[0] } })}
+                                onClick={() => {
+                                    // navigate(`/payment`, { state: { hotelId: hotel[0] } });
+                                    navigate(`/payment/${hotel[0]}`);
+
+                                }}
                             >
                                 Proceed to Payment
                             </Button>

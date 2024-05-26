@@ -1,16 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useForm from "./useForm";
 import { Button, Form, Row, Col, Image, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/PaymentPage.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { useLocation } from 'react-router-dom';
 
-const PaymentPage = ({ hotelName, hotelPrice, hotelImage }) => {
+
+
+
+const PaymentPage = () => {
   const { handleChange, handleFocus, handleSubmit, values, errors } = useForm();
   const navigate = useNavigate();
+  const { hotelId } = useParams();
   const [show, setShow] = useState(false);
+
+
+
+  console.log('Hotel ID:', hotelId);
+
+  const [hotelDetails, setHotelDetails] = useState({
+    name: "",
+    address: "",
+    city: "",
+    country: "",
+    rating: 0,
+    image: "",
+    description: "",
+  });
+
+  useEffect(() => {
+    const fetchHotelDetails = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:5000/hotels/${hotelId}`);
+        console.log(response.data.hotel);
+        if (response.data && response.data.hotel) {
+          setHotelDetails({
+            name: response.data.hotel.name,
+            address: response.data.hotel.address,
+            city: response.data.hotel.city,
+            country: response.data.hotel.country,
+            rating: response.data.hotel.rating,
+            image: response.data.hotel.photo_url,
+            description: response.data.hotel.description
+          });
+        }
+      } catch (error) {
+        console.error(`Failed to fetch hotel details for hotel ${hotelId}:`, error);
+      }
+    };
+    fetchHotelDetails();
+  }, [hotelId]);
+
 
   const handleClose = () => {
     setShow(false);
@@ -37,15 +81,56 @@ const PaymentPage = ({ hotelName, hotelPrice, hotelImage }) => {
         Back
       </Button>
 
-        <div className="container">
-      <Row className="info-and-card">
-        <Col md={6} className="hotel-info">
-          <h2 style={{ color: "#ffffffd9" }}>{"TEST HOTEL"}</h2>
-          <Image src={"download.jpg"} alt="Hotel Image" thumbnail />
-          <p className="price">Price: ${"TEST PRİCE"}</p>
-          <p className="hotelLocation">Hotel Location: {"TEST LOCATİON"}</p>
-        </Col>
-        <Col md={6}>
+
+        <script>console.log(hotelDetails)</script>
+
+      <div className="container">
+
+        <Row className="info-and-card">
+          <Col md={6} className="hotel-info">
+            <h2 style={{ color: "#ffffffd9" 
+              , fontSize: "1.2rem"
+              , marginBottom: "10px"
+              , marginTop: "10px"
+              , textAlign: "center"
+              , fontWeight: "bold"
+              , textTransform: "uppercase"
+              , letterSpacing: "1px"
+              , textDecorationColor: "#ffffffd9"
+            }}>{hotelDetails.name}</h2>
+            <Image src={hotelDetails.image} alt="Hotel Image" thumbnail />
+            <p className="price"
+            style={{
+              color: "#ffffffd9",
+              fontSize: "1.2rem",
+              marginBottom: "10px",
+              marginTop: "10px",
+            }}
+            >Price: ${hotelDetails.price}</p>
+            <p className="hotelLocation"
+            style={{
+              color: "#ffffffd9",
+              fontSize: "1.2rem",
+              marginBottom: "10px",
+            }}
+            >Hotel Location: {hotelDetails.address +" "+ hotelDetails.city +" "+ hotelDetails.country}</p>
+            <p className="hotelDescription"
+            style={{
+              color: "#ffffffd9",
+              fontSize: "1.2rem",
+              marginBottom: "10px",
+            }}
+            >Hotel Description: {hotelDetails.description}</p>
+            <p className="hotelRating"
+            style={{
+              color: "#ffffffd9",
+              fontSize: "1.2rem",
+              marginBottom: "10px",
+            }}
+            >Hotel Rating: {hotelDetails.rating}</p>
+          </Col>
+
+          <Col md={6}>
           <div className="box justify-content-center align-items-center">
             <div className="formDiv">
               <div className="creditCard">
@@ -194,5 +279,6 @@ const PaymentPage = ({ hotelName, hotelPrice, hotelImage }) => {
     </div>
   );
 };
+
 
 export default PaymentPage;

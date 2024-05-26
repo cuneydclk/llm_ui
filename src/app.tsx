@@ -19,11 +19,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<AuthPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/payment/:hotelId" element={<PaymentPage />} />
         </Routes>
       </Router>
     </Providers>
   </React.StrictMode>
 );
-
-

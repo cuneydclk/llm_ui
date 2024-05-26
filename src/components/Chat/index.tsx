@@ -3,15 +3,10 @@ import { useForm } from "react-hook-form";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useMutation } from "react-query";
 import axios from "axios";
-import {
-    Avatar,
-    IconButton,
-    Spinner,
-    Stack,
-    Text
-} from "@chakra-ui/react";
+import { Avatar, IconButton, Spinner, Stack, Text } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import { FiSend } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 import gptAvatar from "@/assets/gpt-avatar.svg";
 import warning from "@/assets/warning.svg";
@@ -23,23 +18,15 @@ import { useAPI } from "@/store/api";
 import HotelInfo from "@/components/HotelInfo";
 
 export const Chat = ({ ...props }) => {
+    const navigate = useNavigate();
     const { api } = useAPI();
-    const {
-        selectedChat,
-        addMessage,
-        addChat,
-        editChat
-    } = useChat();
-    const selectedId = selectedChat?.id,
-        selectedRole = selectedChat?.role;
+    const { selectedChat, addMessage, addChat, editChat } = useChat();
+    const selectedId = selectedChat?.id;
+    const selectedRole = selectedChat?.role;
 
     const hasSelectedChat = selectedChat && selectedChat?.content.length > 0;
 
-    const {
-        register,
-        setValue,
-        handleSubmit
-    } = useForm();
+    const { register, setValue, handleSubmit } = useForm();
 
     const overflowRef = useRef(null);
     const updateScroll = () => {
@@ -84,6 +71,9 @@ export const Chat = ({ ...props }) => {
                         message: "Here are the hotel details:",
                         results: message
                     });
+
+                    // Navigate to the payment page with hotel details
+                    // navigate('/payment', { state: message });
 
                     if (selectedRole === "New chat" || selectedRole === undefined) {
                         editChat(selectedId, { role: prompt });

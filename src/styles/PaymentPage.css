@@ -63,12 +63,7 @@ a {
 }
 
 
-.price {
-  font-size: 20px; /* Fiyat bilgisinin font boyutu */
-  color: #ffffffd9; /* Fiyat bilgisinin rengi */
-  font-weight: bold; /* Fiyat bilgisinin kalın yazılması */
-  margin-top: 10px; /* Üstteki elemanla arasındaki boşluk */
-}
+
 
 /* Resim için stil */
 .hotel-info img {
@@ -101,4 +96,3 @@ a {
   display: flex;
   height: 70%;
 }
-
