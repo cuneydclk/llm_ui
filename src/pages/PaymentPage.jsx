@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import useForm from "./useForm";
-import { Button, Form, Row, Col, Image, Modal } from "react-bootstrap";
+import { Button, Form, Row, Col, Image, Modal, Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/PaymentPage.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { useLocation } from 'react-router-dom';
-
+import { Input } from "@chakra-ui/react";
 
 
 
@@ -17,10 +16,10 @@ const PaymentPage = () => {
   const navigate = useNavigate();
   const { hotelId } = useParams();
   const [show, setShow] = useState(false);
+  const [day, setDay] = useState(0);
 
 
 
-  console.log('Hotel ID:', hotelId);
 
   const [hotelDetails, setHotelDetails] = useState({
     name: "",
@@ -30,13 +29,16 @@ const PaymentPage = () => {
     rating: 0,
     image: "",
     description: "",
+    price: 0
   });
 
+  const [rooms, setRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState("");
+  
   useEffect(() => {
     const fetchHotelDetails = async () => {
       try {
         const response = await axios.get(`http://127.0.0.1:5000/hotels/${hotelId}`);
-        console.log(response.data.hotel);
         if (response.data && response.data.hotel) {
           setHotelDetails({
             name: response.data.hotel.name,
@@ -45,15 +47,35 @@ const PaymentPage = () => {
             country: response.data.hotel.country,
             rating: response.data.hotel.rating,
             image: response.data.hotel.photo_url,
-            description: response.data.hotel.description
+            description: response.data.hotel.description,
+            price: 0
           });
+
+        }
+        const roomsResponse = await axios.get(`http://127.0.0.1:5000/hotels/${hotelId}/rooms`);
+        if (roomsResponse.data) {
+          setRooms(roomsResponse.data);
         }
       } catch (error) {
         console.error(`Failed to fetch hotel details for hotel ${hotelId}:`, error);
       }
     };
-    fetchHotelDetails();
+    setTimeout(() => {
+      fetchHotelDetails();
+    }, 1);
   }, [hotelId]);
+
+
+
+  const handleRoomSelection = (eventKey) => {
+    const selectedRoom = rooms.find(room => room.room_id === Number(eventKey));
+    if (selectedRoom) {
+      setSelectedRoom(selectedRoom);
+      hotelDetails.price = selectedRoom.price_per_night * day;
+    } else {
+      console.error('Room not found');
+    }
+  };
 
 
   const handleClose = () => {
@@ -66,9 +88,13 @@ const PaymentPage = () => {
     // Perform payment processing logic here
     setShow(true); // Show popup
   };
+  const handleDayChange = (e) => {
+    setDay(e.target.value);
+    hotelDetails.price = selectedRoom.price_per_night * e.target.value;
+  }
 
   return (
-    <div style={{overflow: "hidden", height: "100vh"}}>
+    <div style={{overflow: "auto", height: "100vh"}}>
       <Button variant="secondary" onClick={() => navigate("/home")} style={{ 
         position: "absolute", 
         top: "10px", 
@@ -99,14 +125,6 @@ const PaymentPage = () => {
               , textDecorationColor: "#ffffffd9"
             }}>{hotelDetails.name}</h2>
             <Image src={hotelDetails.image} alt="Hotel Image" thumbnail />
-            <p className="price"
-            style={{
-              color: "#ffffffd9",
-              fontSize: "1.2rem",
-              marginBottom: "10px",
-              marginTop: "10px",
-            }}
-            >Price: ${hotelDetails.price}</p>
             <p className="hotelLocation"
             style={{
               color: "#ffffffd9",
@@ -128,6 +146,30 @@ const PaymentPage = () => {
               marginBottom: "10px",
             }}
             >Hotel Rating: {hotelDetails.rating}</p>
+            <Dropdown onSelect={handleRoomSelection}>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {selectedRoom ? selectedRoom.room_type : "Select a Room"}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {rooms.map((room) => (
+                  <Dropdown.Item eventKey={room.room_id} key={room.room_id}>
+                    {room.room_type} - ${room.price_per_night}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+                <p className="price"
+                style={{
+                  color: "#ffffffd9",
+                  fontSize: "1.2rem",
+                  marginBottom: "10px",
+                  marginTop: "10px",
+                }}
+                >Price: ${hotelDetails.price}</p>
+                <div style={{display: "flex", alignItems: "center"}}>
+                Number of Days: <Input type="number" onChange={handleDayChange} disabled={!selectedRoom} style={{width: "60px", marginLeft: "10px"}} />
+                </div>
+                
           </Col>
 
           <Col md={6}>
@@ -172,19 +214,18 @@ const PaymentPage = () => {
                   />
                 </Form.Group>
                 <Row>
-                  <Col>
+                <Col>
                     <Form.Group>
                       <Form.Control
-                        type="text"
-                        name="cardType"
-                        id="cardType"
-                        data-testid="cardType"
-                        placeholder="Card Type"
-                        value={values.cardType}
+                        type="number"
+                        id="cardSecurityCode"
+                        data-testid="cardSecurityCode"
+                        name="cardSecurityCode"
+                        placeholder="Security Code"
+                        value={values.cardSecurityCode}
                         onChange={handleChange}
                         onFocus={handleFocus}
-                        isValid={errors.ctype}
-                        style={{ marginBottom: "10px" }}
+                        isValid={errors.ccvv}
                       />
                     </Form.Group>
                   </Col>
@@ -205,36 +246,6 @@ const PaymentPage = () => {
                   </Col>
                 </Row>
                 <Row>
-                  <Col>
-                    <Form.Group>
-                      <Form.Control
-                        type="number"
-                        id="cardSecurityCode"
-                        data-testid="cardSecurityCode"
-                        name="cardSecurityCode"
-                        placeholder="Security Code"
-                        value={values.cardSecurityCode}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        isValid={errors.ccvv}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col>
-                    <Form.Group>
-                      <Form.Control
-                        type="text"
-                        id="cardPostalCode"
-                        data-testid="cardPostalCode"
-                        name="cardPostalCode"
-                        placeholder="Postal Code"
-                        value={values.cardPostalCode}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        isValid={errors.cpostal}
-                      />
-                    </Form.Group>
-                  </Col>
                 </Row>
                 <Row className="justify-center">
                   <Col>
